@@ -1,66 +1,46 @@
 import React from "react";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
-import { Ionicons } from "@expo/vector-icons";
-import { View, Text } from "react-native";
+import { SafeAreaView, Text, View, StatusBar } from "react-native";
+import Constants from "expo-constants"; // Constants 가져오기
+import { useFonts } from "expo-font"; // expo-font 사용
 
-// 예제 화면
-function HomeScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>홈 화면</Text>
-    </View>
-  );
-}
-function SettingsScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>설정 화면</Text>
-    </View>
-  );
-}
-function ProfileScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>프로필 화면</Text>
-    </View>
-  );
-}
-
-// 네비게이터 생성
-const Tab = createBottomTabNavigator();
-
-function MyTabs() {
-  return (
-    <Tab.Navigator
-      screenOptions={({ route }) => ({
-        tabBarIcon: ({ color, size }) => {
-          let iconName;
-          if (route.name === "홈") {
-            iconName = "home";
-          } else if (route.name === "설정") {
-            iconName = "settings";
-          } else if (route.name === "프로필") {
-            iconName = "person";
-          }
-          return <Ionicons name={iconName as any} size={size} color={color} />;
-        },
-        tabBarActiveTintColor: "blue",
-        tabBarInactiveTintColor: "gray",
-        headerShown: false, // 기본 네비게이션 바 숨기기
-      })}
-    >
-      <Tab.Screen name="홈" component={HomeScreen} />
-      <Tab.Screen name="설정" component={SettingsScreen} />
-      <Tab.Screen name="프로필" component={ProfileScreen} />
-    </Tab.Navigator>
-  );
-}
+import { MyTabs } from "./components/Tab/MyTabs";
 
 export default function App() {
+  const [fontsLoaded] = useFonts({
+    GmarketSansBold: require("./assets/fonts/GmarketSansTTFBold.ttf"),
+    GmarketSansLight: require("./assets/fonts/GmarketSansTTFLight.ttf"),
+    GmarketSansMedium: require("./assets/fonts/GmarketSansTTFMedium.ttf"),
+    KoPubWoldMedium: require("./assets/fonts/Medium.ttf"),
+    KoPubWoldBold: require("./assets/fonts/Bold.ttf"),
+    KoPubWoldLight: require("./assets/fonts/Light.ttf"),
+  });
+
+  if (!fontsLoaded) {
+    return <Text>Loading...</Text>;
+  }
+
   return (
-    <NavigationContainer>
-      <MyTabs />
-    </NavigationContainer>
+    <SafeAreaView className="flex-1 bg-gray-200">
+      <StatusBar barStyle="default" translucent={true} />
+      <View
+        className="flex-1 font-gmarketLight"
+        style={{
+          paddingTop: Constants.statusBarHeight,
+        }}
+      >
+        <View className="bg-white p-4">
+          <Text className="text-pink-400 text-xl font-gmarketBold">
+            {/*로고 이미지로 대체 예정 */}
+            Holding5
+          </Text>
+        </View>
+        <View style={{ flex: 1 }}>
+          <NavigationContainer>
+            <MyTabs />
+          </NavigationContainer>
+        </View>
+      </View>
+    </SafeAreaView>
   );
 }
