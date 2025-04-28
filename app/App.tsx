@@ -1,10 +1,45 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import { SafeAreaView, Text, View, StatusBar } from "react-native";
-import Constants from "expo-constants"; // Constants 가져오기
-import { useFonts } from "expo-font"; // expo-font 사용
-
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { Text, View, StatusBar, Image } from "react-native";
+import {
+  SafeAreaProvider,
+  useSafeAreaInsets,
+} from "react-native-safe-area-context";
+import { useFonts } from "expo-font";
 import { MyTabs } from "./components/Tab/MyTabs";
+import PostDetail from "./components/Tab/PostDetail/PostDetail";
+
+// 1. Stack 타입 설정
+export type RootStackParamList = {
+  Tabs: undefined;
+  PostDetail: { post: any };
+};
+
+// 2. Stack 생성
+const Stack = createNativeStackNavigator<RootStackParamList>();
+
+function AppLayout() {
+  const insets = useSafeAreaInsets();
+
+  return (
+    <View className="flex-1 bg-white" style={{ paddingTop: insets.top }}>
+      <StatusBar
+        barStyle="dark-content"
+        backgroundColor="#ffffff"
+        translucent={false}
+      />
+      <View className="flex-1">
+        <NavigationContainer>
+          <Stack.Navigator screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="Tabs" component={MyTabs} />
+            <Stack.Screen name="PostDetail" component={PostDetail} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </View>
+    </View>
+  );
+}
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -21,26 +56,8 @@ export default function App() {
   }
 
   return (
-    <SafeAreaView className="flex-1 bg-gray-200">
-      <StatusBar barStyle="default" translucent={true} />
-      <View
-        className="flex-1 font-gmarketLight"
-        style={{
-          paddingTop: Constants.statusBarHeight,
-        }}
-      >
-        <View className="bg-white p-4">
-          <Text className="text-pink-400 text-xl font-gmarketBold">
-            {/*로고 이미지로 대체 예정 */}
-            Holding5
-          </Text>
-        </View>
-        <View style={{ flex: 1 }}>
-          <NavigationContainer>
-            <MyTabs />
-          </NavigationContainer>
-        </View>
-      </View>
-    </SafeAreaView>
+    <SafeAreaProvider>
+      <AppLayout />
+    </SafeAreaProvider>
   );
 }

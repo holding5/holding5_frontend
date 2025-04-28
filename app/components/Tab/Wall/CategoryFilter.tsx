@@ -31,7 +31,7 @@ const CategoryFilter = () => {
   const [selected, setSelected] = useState<string[]>([]);
   const { width } = useWindowDimensions();
 
-  const maxWidth = width * 0.9;
+  const maxWidth = width * 0.95;
 
   const toggleSelectAll = () => {
     if (selected.length === categories.length) {
@@ -51,7 +51,7 @@ const CategoryFilter = () => {
 
   return (
     <View
-      className="bg-white p-3 mb-3 rounded-2xl shadow-lg"
+      className="bg-white p-2 mb-2 rounded-2xl shadow-lg"
       style={{ width: maxWidth }}
     >
       <TouchableOpacity
@@ -77,7 +77,7 @@ const CategoryFilter = () => {
             className="flex-row items-center px-2 pt-2"
           >
             {selected.length === categories.length ? (
-              <CheckCircle size={22} color="#f472b6" />
+              <CheckCircle size={22} color="#F893B1" />
             ) : (
               <Circle size={22} color="gray" />
             )}
@@ -107,7 +107,7 @@ const CategoryFilter = () => {
           </View>
 
           {/* 적용 버튼 */}
-          <TouchableOpacity className="bg-[#f472b6] py-3 rounded-xl mt-1 font-gmarketMedium">
+          <TouchableOpacity className="bg-[#F893B1] py-3 rounded-xl mt-1 font-gmarketMedium">
             <Text className="text-white text-center font-gmarketMedium">
               적용
             </Text>
