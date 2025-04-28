@@ -36,7 +36,10 @@ export default function PostDetail({ route }: PostDetailProps) {
       {/* 본문 + 댓글 리스트 */}
       <ScrollView
         className="bg-[#d4f6ff]"
-        contentContainerStyle={{ flexGrow: 1 }}
+        contentContainerStyle={{
+          flexGrow: 1,
+          alignItems: "center",
+        }}
       >
         <View className="px-2 mt-2">
           <WallCard post={post} collapsed={false} />
@@ -46,18 +49,13 @@ export default function PostDetail({ route }: PostDetailProps) {
       </ScrollView>
 
       {/* 댓글 입력창 고정 */}
-      <View className="flex-row bg-white items-center px-4 py-3 mb-3 border-t border-gray-200">
+      <View className="flex-row bg-white items-center mb-2 px-4 py-3 border-t border-gray-200 justify-center">
         <TextInput
           className="flex-1 bg-gray-100 rounded-full px-4 py-2 text-sm"
           placeholder="댓글을 남겨주세요"
-          // value={comment}
-          // onChangeText={setComment}
         />
-        <TouchableOpacity
-          // onPress={handleSendComment}
-          className="ml-2 bg-[#85D0E3] rounded-full px-4 py-2"
-        >
-          <Text className="text-white text-sm font-bold">입력</Text>
+        <TouchableOpacity className="ml-2 bg-[#85D0E3] rounded-full px-4 py-2">
+          <Text className="font-gmarketMedium text-white text-sm">입력</Text>
         </TouchableOpacity>
       </View>
     </KeyboardAvoidingView>

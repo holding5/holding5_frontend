@@ -17,7 +17,7 @@ export function CreatePostAppbar() {
       </TouchableOpacity>
 
       {/* 텍스트 중앙 정렬 */}
-      <Text className="flex-1 text-center font-gmarketMedium text-lg font-bold text-[#4c4c4c]">
+      <Text className="flex-1 text-center font-gmarketMedium text-lg text-[#4c4c4c]">
         글쓰기
       </Text>
 
@@ -29,7 +29,7 @@ export function CreatePostAppbar() {
           borderWidth: 2,
         }}
       >
-        <Text className="text-[#85D0E3] font-bold">완료</Text>
+        <Text className="text-[#85D0E3] font-gmarketMedium">완료</Text>
       </TouchableOpacity>
     </View>
   );

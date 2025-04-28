@@ -15,7 +15,7 @@ export function PostDeatilAppbar() {
         <Feather name="arrow-left" size={20} color="#ffffff" />
       </TouchableOpacity>
 
-      <Text className="font-gmarketMedium text-lg font-bold text-[#4c4c4c] ml-4">
+      <Text className="font-gmarketMedium text-lg text-[#4c4c4c] ml-4">
         어려움 우리 함께 해결해요.
       </Text>
     </View>

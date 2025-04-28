@@ -20,8 +20,8 @@ export const WallTab = () => {
   };
 
   return (
-    <View className="flex-1 justify-center items-center">
-      <ScrollView className="p-2 bg-[#d4f6ff]">
+    <View className="flex-1 justify-center items-center bg-[#d4f6ff]">
+      <ScrollView className="p-2 bg-[#d4f6ff] ">
         <CategoryFilter />
         {data.map((post, index) => (
           <WallItem key={index} post={post} />
