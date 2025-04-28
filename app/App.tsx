@@ -1,19 +1,21 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { Text, View, StatusBar, Image } from "react-native";
+import { Text, View, StatusBar } from "react-native";
 import {
   SafeAreaProvider,
   useSafeAreaInsets,
 } from "react-native-safe-area-context";
 import { useFonts } from "expo-font";
 import { MyTabs } from "./components/Tab/MyTabs";
-import PostDetail from "./components/Tab/PostDetail/PostDetail";
+import PostDetail from "./components/PostDetail/PostDetail";
+import CreatePost from "./components/CreatePost/CreatePost";
 
 // 1. Stack 타입 설정
 export type RootStackParamList = {
   Tabs: undefined;
   PostDetail: { post: any };
+  CreatePost: undefined;
 };
 
 // 2. Stack 생성
@@ -34,6 +36,7 @@ function AppLayout() {
           <Stack.Navigator screenOptions={{ headerShown: false }}>
             <Stack.Screen name="Tabs" component={MyTabs} />
             <Stack.Screen name="PostDetail" component={PostDetail} />
+            <Stack.Screen name="CreatePost" component={CreatePost} />
           </Stack.Navigator>
         </NavigationContainer>
       </View>

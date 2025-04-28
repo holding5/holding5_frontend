@@ -3,6 +3,7 @@
     "name": "Holding5",
     "slug": "Holding5",
     "scheme": "holding5",
+    "platforms": ["ios", "android", "web"],
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

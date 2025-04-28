@@ -2,11 +2,12 @@ import { CommentData, PostData } from "./WallType";
 
 export const data: PostData[] = [
   {
+    id: "1",
     profile_img: "https://randomuser.me/api/portraits/women/21.jpg",
     problem: "성적, 학업문제",
     userName: "정유미",
     content:
-      "공부 때문에 가슴이 답답해요.\n성적은 오르지 않죠. 부모님이 보기에도 미안하고 실망하시는 그 모습에 내 가슴만 먹먹해 지네요. 어쩌면 좋을까요?",
+      "공부 때문에 가슴이 답답해요.\n성적은 오르지 않죠. 부모님이 보기에도 미안하고 실망하시는 그 모습에 내 가슴만 먹먹해 지네요. 어쩌면 좋을까요? \n이런 기분을 어떻게 표현해야 할까요?",
     file: "audio/problem_1.mp3",
     cheerCount: 20,
     commentsCount: 19,
@@ -14,11 +15,12 @@ export const data: PostData[] = [
     createAt: "2025-03-31T08:00:00Z",
   },
   {
+    id: "2",
     profile_img: "https://randomuser.me/api/portraits/men/28.jpg",
     problem: "친구, 이성문제",
     userName: "김선우",
     content:
-      "요즘 친구랑 자꾸 다투게 돼요. 작은 일에도 오해가 생기고, 예전처럼 편하게 지내기가 어려워요. 어떻게 관계를 회복할 수 있을까요?",
+      "요즘 친구랑 자꾸 다투게 돼요. 작은 일에도 오해가 생기고, 예전처럼 편하게 지내기가 어려워요. 어떻게 관계를 회복할 수 있을까요? 도와주세요! 친구들과 잘 지내고 싶어요",
     file: "audio/problem_2.mp3",
     cheerCount: 8,
     commentsCount: 14,
@@ -26,6 +28,7 @@ export const data: PostData[] = [
     createAt: "2025-03-30T11:45:00Z",
   },
   {
+    id: "3",
     profile_img: "https://randomuser.me/api/portraits/women/17.jpg",
     problem: "부모님과 갈등",
     userName: "박지혜",
@@ -38,6 +41,7 @@ export const data: PostData[] = [
     createAt: "2025-03-29T16:30:00Z",
   },
   {
+    id: "4",
     profile_img: "https://randomuser.me/api/portraits/women/33.jpg",
     problem: "외모문제",
     userName: "이서연",
@@ -50,6 +54,7 @@ export const data: PostData[] = [
     createAt: "2025-03-27T19:20:00Z",
   },
   {
+    id: "5",
     profile_img: "https://randomuser.me/api/portraits/men/45.jpg",
     problem: "왕따, 학교폭력",
     userName: "최민호",
@@ -62,6 +67,7 @@ export const data: PostData[] = [
     createAt: "2025-03-26T14:10:00Z",
   },
   {
+    id: "6",
     profile_img: "https://randomuser.me/api/portraits/women/25.jpg",
     problem: "기타문제",
     userName: "김다은",
@@ -81,7 +87,7 @@ export const mockComments: CommentData[] = [
     profile_img: "https://randomuser.me/api/portraits/women/68.jpg",
     userName: "정유미",
     content: "저도 비슷한 상황을 겪었어요. 힘내세요!",
-    time: "5분 전",
+    createAt: "2025-03-25T10:05:00Z",
     likes: 12,
     reports: 0,
   },
@@ -90,7 +96,7 @@ export const mockComments: CommentData[] = [
     profile_img: "https://randomuser.me/api/portraits/men/45.jpg",
     userName: "송중기",
     content: "친구들과 대화를 시도해보는 것도 방법일 것 같아요!",
-    time: "10분 전",
+    createAt: "2025-03-26T14:10:00Z",
     likes: 8,
     reports: 1,
   },
@@ -99,7 +105,7 @@ export const mockComments: CommentData[] = [
     profile_img: "https://randomuser.me/api/portraits/women/15.jpg",
     userName: "아이유",
     content: "응원할게요. 절대 혼자가 아니에요!",
-    time: "30분 전",
+    createAt: "2025-03-26T14:10:00Z",
     likes: 25,
     reports: 0,
   },
@@ -108,7 +114,7 @@ export const mockComments: CommentData[] = [
     profile_img: "https://randomuser.me/api/portraits/men/12.jpg",
     userName: "박보검",
     content: "어려운 상황이지만, 분명히 나아질 거예요.",
-    time: "1시간 전",
+    createAt: "2025-03-31T08:00:00Z",
     likes: 15,
     reports: 0,
   },
@@ -117,7 +123,16 @@ export const mockComments: CommentData[] = [
     profile_img: "https://randomuser.me/api/portraits/women/22.jpg",
     userName: "김태리",
     content: "필요하면 주변 어른들에게 도움을 요청해봐요!",
-    time: "2시간 전",
+    createAt: "2025-03-31T08:00:00Z",
+    likes: 5,
+    reports: 0,
+  },
+  {
+    id: "6",
+    profile_img: "https://randomuser.me/api/portraits/women/22.jpg",
+    userName: "김태리",
+    content: "필요하면 주변 어른들에게 도움을 요청해봐요!",
+    createAt: "2025-03-31T08:00:00Z",
     likes: 5,
     reports: 0,
   },

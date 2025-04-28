@@ -95,7 +95,7 @@ const CategoryFilter = () => {
                 className="w-1/2 flex-row items-center py-1.5"
               >
                 {selected.includes(category) ? (
-                  <CheckCircle size={22} color="#f472b6" />
+                  <CheckCircle size={22} color="#F893B1" />
                 ) : (
                   <Circle size={22} color="gray" />
                 )}

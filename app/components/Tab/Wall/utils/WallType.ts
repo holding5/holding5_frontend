@@ -1,4 +1,5 @@
 export type PostData = {
+  id: string;
   profile_img: string;
   problem: string;
   userName: string;
@@ -7,7 +8,7 @@ export type PostData = {
   cheerCount: number;
   commentsCount: number;
   reportCount: number;
-  createAt: string; // ISO 날짜 문자열
+  createAt: string;
 };
 
 export type CommentData = {
@@ -15,7 +16,7 @@ export type CommentData = {
   profile_img: string;
   userName: string;
   content: string;
-  time: string; // 예: '5분 전' 이런 표현
+  createAt: string;
   likes: number;
   reports: number;
 };

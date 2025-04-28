@@ -3,11 +3,11 @@ import { View, Text, Image, useWindowDimensions } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { PostData } from "../utils/WallType";
 
-interface PlusProps {
+interface PostActionsProps {
   post: PostData;
 }
 
-export const PostActions = ({ post }: PlusProps) => (
+export const PostActions = ({ post }: PostActionsProps) => (
   <View className="flex-row items-center space-x-2">
     <View className="flex-row items-center">
       <Feather name="heart" size={18} color="#9ca3af" />
