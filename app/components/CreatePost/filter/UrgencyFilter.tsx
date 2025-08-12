@@ -33,21 +33,23 @@ const UrgencyFilter = () => {
 
   return (
     <View className="bg-white mb-2 rounded-2xl shadow-lg w-full">
-      {/* 상황의 심각성 섹션 */}
+      {/* 상단 제목 */}
       <View className="bg-[#96B6DC] p-2 px-4 rounded-t-xl">
         <Text className="text-white font-gmarketMedium text-base">
           얼마나 심각한가요?
         </Text>
       </View>
 
+      {/* 두 컴포넌트 좌우 배치 */}
       <View className="flex-row">
-        <View className="mx-4">
+        {/* 상황의 심각성 */}
+        <View className="flex-1 px-2">
           <Text className="mt-4 ml-3 text-gray-800 font-gmarketMedium text-center text-bold">
             상황의 심각성
           </Text>
           <View className="border-t border-gray-300 mt-3" />
 
-          <View className="flex-col w-full p-2 px-2">
+          <View className="flex-col w-full p-2">
             {situationIntensy.map((category) => (
               <TouchableOpacity
                 key={category}
@@ -67,13 +69,13 @@ const UrgencyFilter = () => {
           </View>
         </View>
 
-        <View className="mx-4">
-          {/* 마음의 상태 섹션 */}
+        {/* 마음의 상태 */}
+        <View className="flex-1 px-2">
           <Text className="mt-4 ml-3 text-gray-800 font-gmarketMedium text-center text-bold">
             마음의 상태
           </Text>
           <View className="border-t border-gray-300 mt-3" />
-          <View className="flex-col w-full p-2 px-2">
+          <View className="flex-col w-full p-2">
             {mindStatus.map((category) => (
               <TouchableOpacity
                 key={category}
