@@ -3,10 +3,11 @@ import { View, Text, TouchableOpacity } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
-type AppbarProps = {
-  onSubmit: () => void;
-};
-export function CreatePostAppbar({ onSubmit }: AppbarProps) {
+interface Props {
+  text: string;
+}
+
+export default function OverComingAppbar2({ text }: Props) {
   const navigation = useNavigation();
 
   return (
@@ -21,19 +22,9 @@ export function CreatePostAppbar({ onSubmit }: AppbarProps) {
 
       {/* 텍스트 중앙 정렬 */}
       <Text className="flex-1 text-center font-gmarketMedium text-lg text-[#4c4c4c]">
-        글쓰기
+        {text}
       </Text>
-
-      {/* 완료 버튼 */}
-      <TouchableOpacity
-        onPress={onSubmit}
-        className="w-12 h-9 justify-center items-center rounded-md border-[#85D0E3]"
-        style={{
-          borderWidth: 2,
-        }}
-      >
-        <Text className="text-[#85D0E3] font-gmarketMedium">완료</Text>
-      </TouchableOpacity>
+      <Text></Text>
     </View>
   );
 }

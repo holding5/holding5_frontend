@@ -1,16 +1,20 @@
 import React from "react";
 import {
-  ScrollView,
   View,
   TouchableOpacity,
+  Text,
+  FlatList,
+  ActivityIndicator,
 } from "react-native";
+import { Feather } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { useQuery } from "@tanstack/react-query";
+import { data } from "./utils/data";
 import { WallItem } from "./WallItem/WallItem";
 import CategoryFilter from "./CategoryFilter";
-import { data } from "./utils/data";
-import { Feather } from "@expo/vector-icons";
-import { useNavigation } from "@react-navigation/native"; // useNavigation 추가
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../../App";
+import { useGetPostsQuery } from "../../hooks/useGetPostsMutation";
 export const WallTab = () => {
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
@@ -19,15 +23,47 @@ export const WallTab = () => {
     navigation.navigate("CreatePost");
   };
 
+  const {
+    data,
+    fetchNextPage,
+    hasNextPage,
+    isLoading,
+    isFetchingNextPage,
+    error,
+  } = useGetPostsQuery();
+
+  console.log(JSON.stringify(data, null, 2));
+
+  if (isLoading) {
+    return (
+      <View className="flex-1 justify-center items-center bg-[#d4f6ff]">
+        <ActivityIndicator size="large" color="#85D0E3" />
+      </View>
+    );
+  }
+
+  if (error) {
+    console.log(error);
+    return (
+      <View className="flex-1 justify-center items-center bg-[#d4f6ff]">
+        <Text>데이터를 불러오는 데 실패했습니다.</Text>
+      </View>
+    );
+  }
+
+  const posts = data?.pages.flatMap((page) => page.content) ?? [];
+
   return (
     <View className="flex-1 justify-center items-center bg-[#d4f6ff]">
-      <ScrollView className="p-2 bg-[#d4f6ff] ">
-        <CategoryFilter />
-        {data.map((post, index) => (
-          <WallItem key={index} post={post} />
-        ))}
-        <View className="h-5 bg-[#d4f6ff]" />
-      </ScrollView>
+      <TouchableOpacity></TouchableOpacity>
+      <FlatList
+        data={posts}
+        renderItem={({ item }) => <WallItem post={item} />}
+        keyExtractor={(item) => item.id.toString()}
+        ListHeaderComponent={<CategoryFilter />}
+        className="w-full"
+        contentContainerStyle={{ paddingHorizontal: 8, paddingVertical: 4 }}
+      />
 
       <TouchableOpacity
         onPress={handleCreatePost}

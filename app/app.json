@@ -18,13 +18,16 @@
       "supportsTablet": true
     },
     "android": {
+      "usesCleartextTraffic": true,
       "adaptiveIcon": {
         "foregroundImage": "./assets/logo_image.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.anonymous.Holding5"
     },
     "web": {
       "favicon": "./assets/logo_image.png"
-    }
+    },
+    "plugins": ["expo-secure-store"]
   }
 }

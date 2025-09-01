@@ -2,7 +2,7 @@ import { CommentData, PostData } from "./WallType";
 
 export const data: PostData[] = [
   {
-    id: "1",
+    id: 1,
     profile_img: "https://randomuser.me/api/portraits/women/21.jpg",
     problem: "성적, 학업문제",
     userName: "정유미",
@@ -15,7 +15,7 @@ export const data: PostData[] = [
     createAt: "2025-03-31T08:00:00Z",
   },
   {
-    id: "2",
+    id: 2,
     profile_img: "https://randomuser.me/api/portraits/men/28.jpg",
     problem: "친구, 이성문제",
     userName: "김선우",
@@ -28,7 +28,7 @@ export const data: PostData[] = [
     createAt: "2025-03-30T11:45:00Z",
   },
   {
-    id: "3",
+    id: 3,
     profile_img: "https://randomuser.me/api/portraits/women/17.jpg",
     problem: "부모님과 갈등",
     userName: "박지혜",
@@ -41,7 +41,7 @@ export const data: PostData[] = [
     createAt: "2025-03-29T16:30:00Z",
   },
   {
-    id: "4",
+    id: 4,
     profile_img: "https://randomuser.me/api/portraits/women/33.jpg",
     problem: "외모문제",
     userName: "이서연",
@@ -54,7 +54,7 @@ export const data: PostData[] = [
     createAt: "2025-03-27T19:20:00Z",
   },
   {
-    id: "5",
+    id: 5,
     profile_img: "https://randomuser.me/api/portraits/men/45.jpg",
     problem: "왕따, 학교폭력",
     userName: "최민호",
@@ -67,7 +67,7 @@ export const data: PostData[] = [
     createAt: "2025-03-26T14:10:00Z",
   },
   {
-    id: "6",
+    id: 6,
     profile_img: "https://randomuser.me/api/portraits/women/25.jpg",
     problem: "기타문제",
     userName: "김다은",

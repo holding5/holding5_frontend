@@ -1,5 +1,5 @@
 export type PostData = {
-  id: string;
+  id: number;
   profile_img: string;
   problem: string;
   userName: string;
