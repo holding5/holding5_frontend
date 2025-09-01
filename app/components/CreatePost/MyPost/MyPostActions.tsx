@@ -1,26 +1,24 @@
 import React from "react";
 import { View, Text, Image, useWindowDimensions } from "react-native";
 import { Feather } from "@expo/vector-icons";
-import { Post } from "../../../../api/type/apiType";
-import { PostData } from "../utils/WallType";
+import { PostData } from "../../Tab/Wall/utils/WallType";
 interface PostActionsProps {
-  post: Post;
-  // post: PostData;
+  post: PostData;
 }
 
-export const PostActions = ({ post }: PostActionsProps) => (
+export const MyPostActions = ({ post }: PostActionsProps) => (
   <View className="flex-row items-center space-x-2">
     <View className="flex-row items-center">
       <Feather name="heart" size={18} color="#9ca3af" />
       <Text className="font-gmarketMedium text-gray-500 ml-1 text-sm">
-        응원해요 <Text className="w-10 text-center">{post.likeCount}</Text>
+        응원해요 <Text className="w-10 text-center">{post. cheerCount}</Text>
       </Text>
     </View>
 
     <View className="flex-row items-center">
       <Feather name="message-circle" size={18} color="#9ca3af" />
       <Text className="font-gmarketMedium text-gray-500 ml-1 text-sm">
-        댓글 <Text className="w-10 text-center">{post.commentCount}</Text>
+        댓글 <Text className="w-10 text-center">{post.commentsCount}</Text>
       </Text>
     </View>
     <View className="flex-row items-center">

@@ -1,29 +1,23 @@
-import React, { useState } from "react";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-} from "react-native";
-import {
-  CheckCircle,
-  Circle,
-} from "lucide-react-native";
+import React from "react";
+import { View, Text, TouchableOpacity } from "react-native";
+import { CheckCircle, Circle } from "lucide-react-native";
 
-const categories = [
-  "상관없음",
-  "기독교인",
-  "천주교인",
-  "불교인",
-  "무교"
-];
+type Option = {
+  key: string;
+  value: string;
+};
 
-const ReligiousFilter = () => {
-  const [selected, setSelected] = useState<string>("");
+type ReligiousFilterProps = {
+  options: Option[];
+  selectedValue: string | null;
+  onSelect: (key: string) => void;
+};
 
-  const toggleCategory = (category: string) => {
-    setSelected(category);
-  };
-
+const ReligiousFilter = ({
+  options,
+  selectedValue,
+  onSelect,
+}: ReligiousFilterProps) => {
   return (
     <View className="bg-white mb-2 rounded-2xl shadow-lg w-full">
       <View className="bg-[#F893B1] p-2 px-4 rounded-t-xl">
@@ -33,19 +27,19 @@ const ReligiousFilter = () => {
       </View>
 
       <View className="flex-row flex-wrap p-2 px-4">
-        {categories.map((category) => (
+        {options.map((option) => (
           <TouchableOpacity
-            key={category}
-            onPress={() => toggleCategory(category)}
+            key={option.key}
+            onPress={() => onSelect(option.key)}
             className="w-1/2 flex-row items-center py-1.5"
           >
-            {selected.includes(category) ? (
+            {selectedValue === option.key ? (
               <CheckCircle size={22} color="#F893B1" />
             ) : (
               <Circle size={22} color="gray" />
             )}
             <Text className="ml-3 text-gray-800 font-gmarketMedium">
-              {category}
+              {option.value}
             </Text>
           </TouchableOpacity>
         ))}

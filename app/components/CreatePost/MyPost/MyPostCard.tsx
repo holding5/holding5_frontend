@@ -1,16 +1,14 @@
 import { Image, Text, View } from "react-native";
 import { ko } from "date-fns/locale";
 import { formatDistanceToNow } from "date-fns";
-import { Post } from "../../../../api/type/apiType";
-import { PostData } from "../utils/WallType";
+import { PostData } from "../../Tab/Wall/utils/WallType";
 interface PostCardProps {
-  post: Post;
-  // post: PostData;
+  post: PostData;
   collapsed: boolean;
 }
 
-export function PostCard({ post, collapsed }: PostCardProps) {
-  const timeAgo = formatDistanceToNow(new Date(post.createdAt), {
+export function MyPostCard({ post, collapsed }: PostCardProps) {
+  const timeAgo = formatDistanceToNow(new Date(post.createAt), {
     addSuffix: true,
     locale: ko,
   });
@@ -18,18 +16,17 @@ export function PostCard({ post, collapsed }: PostCardProps) {
   return (
     <View className="flex-row mb-2">
       <Image
-        // source={{ uri: post.mediaUrls }}
-        source={{ uri: post.mediaUrls }}
+        source={{ uri: post.profile_img }}
         className="w-12 h-12 rounded-lg mr-3 shadow-md"
       />
       <View className="flex-1 flex-col overflow-hidden">
         <View className="flex-row justify-between items-start">
           <View className="flex-row items-center">
             <Text className="font-koPubWoldBold text-lg font-semibold ">
-              {post.authorName}
+              {post.userName}
             </Text>
             <Text className="font-koPubWoldMediumtext-md text-gray-400 ml-1.5">
-              {post.category}
+              {post.problem}
             </Text>
           </View>
           <Text className="font-gmarketMedium text-xs text-gray-400 flex-shrink-0 ml-2">

@@ -1,12 +1,13 @@
 import { View, useWindowDimensions, TouchableOpacity } from "react-native";
 import { PostCard } from "./PostCard";
-import { PostData } from "../utils/WallType";
 import { PostActions } from "./PostActions";
 import { PostMenu } from "./PostMenu";
 import { maxWidth } from "../../../common/maxWidth";
-
+import { Post } from "../../../../api/type/apiType";
+import { PostData } from "../utils/WallType";
 interface WallItemProps {
-  post: PostData;
+  post: Post;
+  // post: PostData;
   collapsed: boolean;
 }
 
