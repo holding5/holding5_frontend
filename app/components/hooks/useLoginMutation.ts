@@ -15,11 +15,11 @@ export const useLoginMutation = (): UseMutationResult<
     mutationFn: activeLogin,
     onSuccess: (data) => {
       if (data.token) {
-        login(data.token);
+        login({ token: data.token, userId: data.userId });
       }
     },
     onError: (error) => {
-      Alert.alert("로그인 실패", error.message);
+      Alert.alert("로그인 실패", "로그인에 실패 했습니다.");
     },
   });
 };

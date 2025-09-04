@@ -44,6 +44,20 @@ export interface Comment {
   parentId: number | null;
 }
 
+export interface PaginatedCommentsResponse {
+  totalPages: number;
+  totalElements: number;
+  size: number;
+  content: Comment[];
+  number: number;
+  sort: any;
+  pageable: any;
+  numberOfElements: number;
+  first: boolean;
+  last: boolean;
+  empty: boolean;
+}
+
 export interface NewPostPayload {
   userId: number;
   category: string;
@@ -66,10 +80,30 @@ export interface Login {
 
 export interface LoginResponse {
   token: string;
-  success: boolean;
+  userId: number;
 }
 
 export interface PatchPost {
   content: string;
   mediaUrls: string;
+}
+
+export interface createComment {
+  postId: number;
+  userId: number;
+  content: string;
+  anonymity: boolean;
+}
+
+export interface deleteCommentType {
+  postId: number;
+  commentId: number;
+}
+
+export interface updateCommentType {
+  postId: number;
+  commentId: number;
+  userId: number;
+  content: string;
+  anonymity: boolean;
 }

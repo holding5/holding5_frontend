@@ -11,6 +11,9 @@ export const useDeletePostMutation = () => {
     onSuccess: (data, variables) => {
       console.log("게시글 삭제 성공");
       const postId = variables;
+      Alert.alert("게시글 삭제", "게시글이 삭제 되었습니다.", [
+        { text: "확인 " },
+      ]);
       queryClient.invalidateQueries({ queryKey: ["post", postId] });
       queryClient.invalidateQueries({ queryKey: ["posts"] });
     },

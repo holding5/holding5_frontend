@@ -32,8 +32,6 @@ export const WallTab = () => {
     error,
   } = useGetPostsQuery();
 
-  console.log(JSON.stringify(data, null, 2));
-
   if (isLoading) {
     return (
       <View className="flex-1 justify-center items-center bg-[#d4f6ff]">
