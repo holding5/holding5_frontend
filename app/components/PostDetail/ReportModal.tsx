@@ -10,12 +10,11 @@ import {
   StyleSheet,
 } from "react-native";
 
-// 신고 사유 목록 (나중에 다른 곳에서도 쓸 수 있도록 분리)
 const REPORT_REASONS = [
-  { type: "INSULT", text: "언어폭력" },
-  { type: "SPAM", text: "도배" },
-  { type: "PORN", text: "음담패설성적희롱" },
-  { type: "ETC", text: "부적절한언어사용" },
+  { type: "LANGUAGE_VIOLENCE", text: "언어폭력" },
+  { type: "SPAMMING", text: "도배" },
+  { type: "INAPPROPRIATE_LANGUAGE_USE", text: "부적절한 언어사용" },
+  { type: "SEXUAL_HARASSMENT", text: "음담패설/성적희롱" },
 ];
 
 interface ReportModalProps {
@@ -59,7 +58,6 @@ export const ReportModal = ({
   );
 };
 
-// 스타일시트 (NativeWind className 대신 사용)
 const styles = StyleSheet.create({
   backdrop: {
     flex: 1,

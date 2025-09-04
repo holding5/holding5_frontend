@@ -11,7 +11,10 @@ import { Feather } from "@expo/vector-icons";
 import { Post } from "../../../../api/type/apiType";
 interface PostActionsProps {
   post: Post;
+  isLiked: boolean;
+  isReported: boolean;
   togglePostLike: () => void;
+  onReportPress: () => void;
 }
 
 export const PostActions = ({ post, togglePostLike }: PostActionsProps) => (

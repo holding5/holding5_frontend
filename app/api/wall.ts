@@ -332,7 +332,55 @@ export const postPostLike = async ({
   }
 };
 
+// src/api/wall.ts
 
-// export const postReportPost = async({
+// ... (기존 API 함수들)
 
-// })
+// 게시물 신고에 필요한 데이터 타입
+interface PostReportPayload {
+  postId: number;
+  userId: number;
+  type: string;
+}
+
+/**
+ * 게시물을 신고하는 API 함수
+ */
+export const postPostReport = async ({
+  postId,
+  userId,
+  type,
+}: PostReportPayload) => {
+  try {
+    const response = await axiosInstace.post(`/posts/${postId}/report`, null, {
+      params: {
+        userId,
+        type,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("게시물 신고 실패:", error);
+    throw error;
+  }
+};
+
+export const deletePostReport = async ({
+  postId,
+  userId,
+}: {
+  postId: number;
+  userId: number;
+}) => {
+  try {
+    const response = await axiosInstace.delete(`/posts/${postId}/report`, {
+      params: {
+        userId,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("게시물 신고 취소 실패:", error);
+    throw error;
+  }
+};

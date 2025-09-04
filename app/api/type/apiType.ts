@@ -8,6 +8,8 @@ export interface Post {
   reportCount: number;
   commentCount: number;
   activated: boolean;
+  isLiked: boolean;
+  isReported: boolean;
   mediaUrls: string;
   createdAt: string;
   updatedAt: string;
