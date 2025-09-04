@@ -7,7 +7,15 @@ import {
   useQueryClient,
 } from "@tanstack/react-query";
 import { fetchPosts } from "../../api/wall";
-import { getPostLike, deletePostLike, postPostLike } from "../../api/wall";
+import {
+  getPostLike,
+  deletePostLike,
+  postPostLike,
+  postPostReport,
+  deletePostReport,
+} from "../../api/wall";
+import { Alert } from "react-native";
+
 export const useGetPostsQuery = () => {
   return useInfiniteQuery({
     queryKey: ["posts"],
@@ -34,15 +42,12 @@ export const useDeletePostLikeMutation = () => {
     mutationFn: deletePostLike,
     onSuccess: (data, variables) => {
       console.log("게시물 좋아요 취소 성공");
-      // 좋아요 수가 변경되었으므로, 관련된 쿼리들을 무효화합니다.
       queryClient.invalidateQueries({
         queryKey: ["postLike", variables.postId],
       });
 
-      // 1. 해당 게시물의 상세 정보 쿼리 무효화 (좋아요 수 업데이트)
       queryClient.invalidateQueries({ queryKey: ["post", variables.postId] });
 
-      // 2. 전체 게시물 목록 쿼리 무효화 (목록에서도 좋아요 수 업데이트)
       queryClient.invalidateQueries({ queryKey: ["posts"] });
     },
     onError: (error) => {
@@ -51,9 +56,6 @@ export const useDeletePostLikeMutation = () => {
   });
 };
 
-/**
- * 게시물에 좋아요를 누르는 뮤테이션 훅
- */
 export const usePostPostLikeMutation = () => {
   const queryClient = useQueryClient();
 
@@ -61,7 +63,6 @@ export const usePostPostLikeMutation = () => {
     mutationFn: postPostLike,
     onSuccess: (data, variables) => {
       console.log("게시물 좋아요 성공");
-      // 좋아요 취소와 동일하게, 관련된 모든 쿼리를 무효화합니다.
       queryClient.invalidateQueries({
         queryKey: ["postLike", variables.postId],
       });
@@ -70,6 +71,40 @@ export const usePostPostLikeMutation = () => {
     },
     onError: (error) => {
       console.error("게시물 좋아요 실패:", error);
+    },
+  });
+};
+
+export const usePostReportMutation = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: postPostReport,
+    onSuccess: (data, variables) => {
+      queryClient.invalidateQueries({ queryKey: ["post", variables.postId] });
+      queryClient.invalidateQueries({ queryKey: ["posts"] });
+      Alert.alert("성공", "게시물이 신고되었습니다.");
+    },
+    onError: (error) => {
+      const message = "신고에 실패했습니다.";
+      Alert.alert("오류", message);
+    },
+  });
+};
+
+export const useDeleteReportMutation = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: deletePostReport,
+    onSuccess: (data, variables) => {
+      queryClient.invalidateQueries({ queryKey: ["post", variables.postId] });
+      queryClient.invalidateQueries({ queryKey: ["posts"] });
+      Alert.alert("성공", "신고가 취소되었습니다.");
+    },
+    onError: (error) => {
+      const message = "신고 취소에 실패했습니다.";
+      Alert.alert("오류", message);
     },
   });
 };
