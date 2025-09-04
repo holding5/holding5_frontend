@@ -66,6 +66,7 @@ export default function UpdatePost({ route }: UpdatePostProps) {
   }
 
   if (error) {
+    console.log(error);
     return (
       <SafeAreaView style={styles.container}>
         <UpdatePostAppbar onSubmit={() => {}} />
@@ -90,7 +91,7 @@ export default function UpdatePost({ route }: UpdatePostProps) {
           textAlignVertical="top"
           value={content}
           onChangeText={setContent}
-          autoFocus // 화면 로드 시 자동으로 포커스 (선택 사항)
+          autoFocus 
         />
       </KeyboardAwareScrollView>
     </SafeAreaView>

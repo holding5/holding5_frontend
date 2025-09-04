@@ -17,7 +17,6 @@ import { ReportModal } from "../../../PostDetail/ReportModal";
 
 interface WallItemProps {
   post: Post;
-  // post: PostData;
   collapsed: boolean;
 }
 
@@ -30,6 +29,8 @@ export function WallCard({ post, collapsed }: WallItemProps) {
   const { mutate: likePost } = usePostPostLikeMutation();
   const { mutate: deleteLike } = useDeletePostLikeMutation();
   const { mutate: reportPost } = usePostReportMutation();
+  const {mutate:deleteReport} = useDeleteReportMutation();
+
 
   const togglePostLike = () => {
     console.log(`좋아요 토글: postId=${post.id}, userId=${userId}`);
@@ -47,9 +48,26 @@ export function WallCard({ post, collapsed }: WallItemProps) {
     setIsLiked(!isLiked);
   };
 
-  const handleReportPress = () => {
+    const handleReportToggle = () => {
     if (!userId) return Alert.alert("로그인이 필요합니다.");
-    setReportModalVisible(true);
+
+    if (isReported) {
+      // 이미 신고한 상태라면 -> 신고 취소 로직
+      Alert.alert("신고 취소", "이 게시물에 대한 신고를 취소하시겠습니까?", [
+        { text: "유지", style: "cancel" },
+        {
+          text: "신고 취소",
+          onPress: () => {
+            deleteReport({ postId: post.id, userId });
+            setIsReported(false); // UI 즉시 반영
+          },
+          style: "destructive",
+        },
+      ]);
+    } else {
+      // 신고하지 않은 상태라면 -> 신고 모달 열기
+      setReportModalVisible(true);
+    }
   };
 
   const handleSelectReportReason = (reason: { type: string }) => {
@@ -60,6 +78,7 @@ export function WallCard({ post, collapsed }: WallItemProps) {
       userId: userId!,
       type: reason.type,
     });
+    setIsReported(true);
   };
   return (
     <View
@@ -69,7 +88,7 @@ export function WallCard({ post, collapsed }: WallItemProps) {
       <PostCard post={post} collapsed={collapsed} />
 
       <View className="flex-row justify-between  border-t border-gray-200 pt-3"></View>
-
+₩₩
       <View className="flex-row justify-between">
         <PostMenu id={post.id} />
         <PostActions
@@ -77,7 +96,7 @@ export function WallCard({ post, collapsed }: WallItemProps) {
           togglePostLike={togglePostLike}
           isLiked={isLiked}
           isReported={isReported}
-          onReportPress={handleReportPress}
+          onReportPress={handleReportToggle}
         />
         <ReportModal
           visible={isReportModalVisible}
