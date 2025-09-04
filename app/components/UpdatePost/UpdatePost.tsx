@@ -14,12 +14,16 @@ import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../App";
 import { useState, useEffect } from "react";
 import { usePatchMutation } from "../hooks/usePatchMutation";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 type UpdatePostProps = NativeStackScreenProps<RootStackParamList, "UpdatePost">;
 
 export default function UpdatePost({ route }: UpdatePostProps) {
   const { postId } = route.params;
   const { data, isLoading, error } = useGetPostByIdQuery(postId);
   const { mutate: updatePost, isPending: isUpdating } = usePatchMutation();
+  const navigate =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   const [content, setContent] = useState("");
   const [mediaUrls, setMediaUrls] = useState("");
@@ -34,14 +38,22 @@ export default function UpdatePost({ route }: UpdatePostProps) {
   const handleUpdate = () => {
     if (isUpdating) return;
 
-    updatePost({
-      postId: postId,
-      patchPostData: {
-        content: content,
-        mediaUrls: mediaUrls,
+    updatePost(
+      {
+        postId: postId,
+        patchPostData: {
+          content: content,
+          mediaUrls: mediaUrls,
+        },
       },
-    });
+      {
+        onSuccess: () => {
+          navigate.reset({ routes: [{ name: "Tabs" }] });
+        },
+      }
+    );
   };
+
   if (isLoading) {
     return (
       <SafeAreaView style={styles.container}>
@@ -53,7 +65,6 @@ export default function UpdatePost({ route }: UpdatePostProps) {
     );
   }
 
-  // 에러 발생 시 UI
   if (error) {
     return (
       <SafeAreaView style={styles.container}>
@@ -77,8 +88,8 @@ export default function UpdatePost({ route }: UpdatePostProps) {
           placeholder="여기에 내용을 입력해주세요."
           multiline
           textAlignVertical="top"
-          //   value={postContent}
-          //   onChangeText={setPostContent}
+          value={content}
+          onChangeText={setContent}
           autoFocus // 화면 로드 시 자동으로 포커스 (선택 사항)
         />
       </KeyboardAwareScrollView>

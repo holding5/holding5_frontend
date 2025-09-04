@@ -4,7 +4,6 @@ import { RootStackParamList } from "../../../../App";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { WallCard } from "./WallCard";
 import { Post } from "../../../../api/type/apiType";
-import { PostData } from "../utils/WallType";
 interface WallItemProps {
   post: Post;
   // post: PostData;

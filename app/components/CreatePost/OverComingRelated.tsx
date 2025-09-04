@@ -22,7 +22,6 @@ export default function OverComingRelated() {
     <View style={{ flex: 1, backgroundColor: "#F3F4F6" }}>
       <OverComingAppbar2 text={"관련 사연"} />
 
-      {/* 5. FlatList를 사용해 필터링된 게시물 목록을 렌더링합니다. */}
       <FlatList
         data={selectedPostDetails}
         keyExtractor={(item) => item.id.toString()}

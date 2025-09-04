@@ -1,21 +1,30 @@
 import React from "react";
-import { View, Text, Image, useWindowDimensions } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  useWindowDimensions,
+  Touchable,
+  TouchableOpacity,
+} from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { Post } from "../../../../api/type/apiType";
-import { PostData } from "../utils/WallType";
 interface PostActionsProps {
   post: Post;
-  // post: PostData;
+  togglePostLike: () => void;
 }
 
-export const PostActions = ({ post }: PostActionsProps) => (
+export const PostActions = ({ post, togglePostLike }: PostActionsProps) => (
   <View className="flex-row items-center space-x-2">
-    <View className="flex-row items-center">
+    <TouchableOpacity
+      className="flex-row items-center"
+      onPress={togglePostLike}
+    >
       <Feather name="heart" size={18} color="#9ca3af" />
       <Text className="font-gmarketMedium text-gray-500 ml-1 text-sm">
         응원해요 <Text className="w-10 text-center">{post.likeCount}</Text>
       </Text>
-    </View>
+    </TouchableOpacity>
 
     <View className="flex-row items-center">
       <Feather name="message-circle" size={18} color="#9ca3af" />
@@ -23,11 +32,11 @@ export const PostActions = ({ post }: PostActionsProps) => (
         댓글 <Text className="w-10 text-center">{post.commentCount}</Text>
       </Text>
     </View>
-    <View className="flex-row items-center">
+    <TouchableOpacity className="flex-row items-center" onPress={() => {}}>
       <Feather name="alert-triangle" size={18} color="#9ca3af" />
       <Text className="font-gmarketMedium text-gray-500 ml-1 text-sm">
         신고 <Text className="w-10 text-center">{post.reportCount}</Text>
       </Text>
-    </View>
+    </TouchableOpacity>
   </View>
 );

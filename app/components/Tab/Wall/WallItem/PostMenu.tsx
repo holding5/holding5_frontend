@@ -32,6 +32,7 @@ export function PostMenu({ id }: PostMenuProps) {
                   text: "삭제",
                   onPress: () => {
                     deletePost(id);
+                    navigate.reset({ routes: [{ name: "Tabs" }] });
                   },
                   style: "destructive",
                 },
